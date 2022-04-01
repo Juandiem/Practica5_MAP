@@ -11,7 +11,7 @@ namespace Test
         public void NumElemsListaVacía()
         {
             //Arrange
-            Lista unaLista = new Lista();
+            Lista unaLista = new Lista(3,2);
             //Act
             int numElemsLista = unaLista.NumElems();
             //Assert
@@ -23,7 +23,7 @@ namespace Test
 
         static void Main(string[] args)
         {
-            
+            Lista unaLista = new Lista(3, 2);
         }
     }
 }

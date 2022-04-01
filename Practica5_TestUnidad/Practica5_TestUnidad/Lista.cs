@@ -15,11 +15,14 @@ namespace Listas {
         /// Construye una lista sin elementos
         /// </summary>
 		public Lista(int limite, int rep) {
+
+			list = new List<int>();
+
 			int n = 1;
 			for (int i = 0; i < limite * rep; i++)
             {
 				list.Add(n);
-				n = (limite % n) + 1;
+				n = (n % limite) + 1;
             }
 		}
 
@@ -75,7 +78,9 @@ namespace Listas {
 		/// </summary>
 		/// <param name="x">Elemento a eliminar</param>
 		public void EliminaElem(int x) {
-			list.RemoveAt(x);
+			int i = 0;
+			while (i < list.Count && list[i] != x) i++;
+			if (i < list.Count) list.RemoveAt(i);
 		}
 	}
 }
