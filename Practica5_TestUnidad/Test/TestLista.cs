@@ -10,7 +10,7 @@ namespace Test
     {
         int lim = 30, rep = 2;
         [Test]
-        public void NumElemsListaVacía()
+        public void NumElemsListaVacia()
         {
             //Arrange
             Lista unaLista = new Lista();
@@ -23,21 +23,20 @@ namespace Test
         }
 
         [Test]
-        public void NumElems()
+        public void NumElemsListaAxB()
         {
             //Arrange
-            lim = 3; rep = 2;
             Lista lista = new Lista(lim, rep);
             //Act
             int numElemsLista = lista.NumElems();
             //Assert
             Assert.That(numElemsLista,
                         Is.EqualTo(lim * rep),
-                        "ERROR: Lista no ha podido devolver la cantidad de elementos en ella");
+                        "ERROR: NumElems no ha devuelto la cantidad de elementos correctamente");
         }
 
         [Test]
-        public void InsertaFin()
+        public void InsertaFinInt()
         {
             //Arrange
             int e = 25;
@@ -47,12 +46,12 @@ namespace Test
             //Assert
             Assert.That(e,
                         Is.EqualTo(lista.NEsimo(lim * rep)),
-                        "ERROR: Lista no ha podido insertar el elemento " + e);
+                        "ERROR: InsertaFin ha insertado el elemento " + e + " correctamente.");
         }
 
 
         [Test]
-        public void EliminaElem()
+        public void EliminaElemExiste()
         {
             //Arrange
             int e = lim;
@@ -60,14 +59,28 @@ namespace Test
             //Act
             lista.EliminaElem(e);
             //Assert
-
             Assert.That(e,
                         Is.Not.EqualTo(lista.NEsimo(lim - 1)),
-                        "ERROR: Lista no ha podido eliminar el elemento" + e + "por que no existe o no se ha encontrado");
+                        "ERROR: EliminaElem no ha eliminado el elemento " + e + " que sí que se encontraba en la lista");
         }
 
         [Test]
-        public void NEsimo()
+        public void EliminaElemNoExiste()
+        {
+            //Arrange
+            int e = lim + 1;
+            Lista lista = new Lista(lim, rep);
+            //Act
+            bool result = lista.EliminaElem(e);
+            //Assert
+
+            Assert.That(result,
+                        Is.False,
+                        "ERROR: EliminaElem ha devuelto true con un elemento que no se encontraba en la lista como parámetro");
+        }
+
+        [Test]
+        public void NEsimoDentroLimites()
         {
             //Arrange
             int n = lim;
@@ -77,7 +90,20 @@ namespace Test
             //Assert
             Assert.That(nElem,
                         Is.EqualTo(n % lim + 1),
-                        "ERROR: Lista no ha podido devolver el elemento " + n + "lista");
+                        "ERROR: NEsimo no ha devuelto el elemento " + n + " de la lista correctamente");
+        }
+
+        [Test]
+        public void NEsimoFueraLimites()
+        {
+            //Arrange
+            Lista lista = new Lista(lim, rep);
+            //Act
+            int n = lim*rep;
+            //Assert
+            Assert.That(unaLista.NEsimo(20); },
+                        Throws.Exception,
+                        "ERROR: NEsimo no lanza excepción cuando se introduce un índice fuera de límites");
         }
 
         static void Main(string[] args)

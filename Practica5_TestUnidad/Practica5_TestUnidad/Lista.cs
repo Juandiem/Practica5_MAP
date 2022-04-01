@@ -83,10 +83,14 @@ namespace Listas {
 		/// Elimina la primera aparición de un elemento en la lista
 		/// </summary>
 		/// <param name="x">Elemento a eliminar</param>
-		public void EliminaElem(int x) {
+		public bool EliminaElem(int x) {
 			int i = 0;
 			while (i < list.Count && list[i] != x) i++;
-			if (i < list.Count) list.RemoveAt(i);
+			if (i < list.Count){ 
+				list.RemoveAt(i); 
+				return true;
+			} 
+			else return false;
 		}
 	}
 }
