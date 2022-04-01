@@ -101,7 +101,7 @@ namespace Test
             //Act
             int n = lim*rep;
             //Assert
-            Assert.That(unaLista.NEsimo(20); },
+            Assert.That(() => { lista.NEsimo(n); },
                         Throws.Exception,
                         "ERROR: NEsimo no lanza excepción cuando se introduce un índice fuera de límites");
         }
