@@ -9,21 +9,26 @@ namespace Listas {
 	public class Lista {
 
 		List<int> list;
-		
+
+		public Lista()
+		{
+			list = new List<int>();
+		}
 		/// <summary>
-        /// Constructora de la lista. 
-        /// Construye una lista sin elementos
-        /// </summary>
-		public Lista(int limite, int rep) {
+		/// Constructora de la lista. 
+		/// Construye una lista sin elementos
+		/// </summary>
+		public Lista(int limite, int rep)
+		{
 
 			list = new List<int>();
 
 			int n = 1;
 			for (int i = 0; i < limite * rep; i++)
-            {
+			{
 				list.Add(n);
 				n = (n % limite) + 1;
-            }
+			}
 		}
 
 		/// <summary>
@@ -59,6 +64,7 @@ namespace Listas {
 		/// <returns>True si el elemento está en la lista; false en otro caso</returns>
 		public bool Esta(int e)
 		{
+			
 			int i = 0;
 			while (i < list.Count && list[i] != e) i++;
 			if (i < list.Count) return true;
