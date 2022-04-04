@@ -42,7 +42,7 @@ namespace Test
             int e = 25;
             Lista lista = new Lista(lim, rep);
             //Act
-            lista.InsertaFin(e);
+            lista.InsertaFinal(e);
             //Assert
             Assert.That(e,
                         Is.EqualTo(lista.NEsimo(lim * rep)),
@@ -57,7 +57,7 @@ namespace Test
             int e = lim;
             Lista lista = new Lista(lim, rep);
             //Act
-            lista.EliminaElem(e);
+            lista.EliminaElto(e);
             //Assert
             Assert.That(e,
                         Is.Not.EqualTo(lista.NEsimo(lim - 1)),
@@ -71,7 +71,7 @@ namespace Test
             int e = lim + 1;
             Lista lista = new Lista(lim, rep);
             //Act
-            bool result = lista.EliminaElem(e);
+            bool result = lista.EliminaElto(e);
             //Assert
 
             Assert.That(result,

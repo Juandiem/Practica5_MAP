@@ -1,97 +1,202 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Listas {
-	/// <summary>
-	/// Lista para guardar números enteros. 
-	/// Se han de implementar todos los métodos que aquí aparecen
-	/// </summary>
-	public class Lista {
+namespace Listas
+{
+	public class Lista
+	{
+		// listas enlazadas de ENTEROS (fácilmente adaptable a cualquier otro tipo)
 
-		List<int> list;
 
+		// CLASE NODO (clase privada para los nodos de la lista)
+		private class Nodo
+		{
+			public int dato;   // información del nodo (podría ser de cualquier tipo)
+			public Nodo sig;   // referencia al siguiente
+
+			// la constructora por defecto sería:
+			// public Nodo() {} // por defecto
+
+			// implementamos nuestra propia constructora para nodos
+			public Nodo(int _dato = 0, Nodo _sig = null)
+			{  // valores por defecto dato=0; y sig=null
+				dato = _dato;
+				sig = _sig;
+			}
+		}
+		// FIN CLASE NODO
+
+		// CAMPOS Y MÉTODOS DE LA CLASE Lista
+
+		// campo pri: referencia al primer nodo de la lista
+		Nodo pri;
+		// constructora de la clase Lista
 		public Lista()
 		{
-			list = new List<int>();
+			pri = null;   //  lista vacia
 		}
+
 		/// <summary>
 		/// Constructora de la lista. 
 		/// Construye una lista sin elementos
 		/// </summary>
 		public Lista(int limite, int rep)
 		{
-
-			list = new List<int>();
-
 			int n = 1;
 			for (int i = 0; i < limite * rep; i++)
 			{
-				list.Add(n);
+				InsertaFinal(n);
 				n = (n % limite) + 1;
 			}
 		}
 
-		/// <summary>
-		/// Número de elementos de la lista
-		/// </summary>
-		/// <returns>Devuelve el número de elementos (0 si es vacía)</returns>
-		public int NumElems() {
-			return list.Count;
+		// insertar elto e al ppio de la lista
+		public void InsertaPpio(int e)
+		{
+			Nodo aux = new Nodo(e, pri);
+			pri = aux;
+		}
+		// añadir elto e al final de la lista
+		public void InsertaFinal(int e)
+		{
+			// distinguimos dos casos
+
+			// lista vacia
+			if (pri == null)
+			{
+				pri = new Nodo(e, null); // creamos nodo en pri
+
+				// lista no vacia				
+			}
+			else
+			{
+				Nodo aux = pri;   // recorremos la lista hasta el ultimo nodo
+				while (aux.sig != null) aux = aux.sig;
+				// aux apunta al último nodo
+				aux.sig = new Nodo(e, null); // creamos el nuevo a continuación
+			}
+		}
+		// buscar elto e
+		public bool BuscaDato(int e)
+		{
+			Nodo aux = pri; // referencia al primero para buscar de ppio a fin
+							// búsqueda de nodo con elto e
+			while (aux != null && aux.dato != e) aux = aux.sig;
+
+			// termina con aux==null (elto no encontrado)
+			// o bien con aux apuntando al primer nodo con elto e
+			return aux != null;
 		}
 
-		/// <summary>
-		/// Elemento que ocupa la posición n-ésima en la lista
-		/// </summary>
-		/// <param name="n">Posición del elemento a recuperar dentro de la lista</param>
-		/// <returns>El elemento en la posición n</returns>
-		/// <exception cref="System.Exception">Lanza una excepción en caso de que no exista la posición</exception>
+		// Conversion a string
+		// método ToString que se invoca implícitamente cuando se hace Console.Write
+		public override string ToString()
+		{
+			string salida = "\nLista: ";
+			Nodo aux = pri;
+			while (aux != null)
+			{
+				salida += aux.dato + " ";
+				aux = aux.sig;
+			}
+			salida += "\n\n";
+			return salida;
+		}
+
+		// elimina elto e (la primera aparición) de la lista, si está, y devuelve true
+		// no hace nada en otro caso y devuelve false
+		public bool EliminaElto(int e)
+		{
+			if (pri == null) return false; // si la lista es vacia no hay nada que eliminar
+			else
+			{
+				// si es el primero puenteamos pri al siguiente
+				if (e == pri.dato)
+				{
+					pri = pri.sig;
+					return true;
+				}
+				else
+				{ // eliminar otro distino al primero				
+				  // busqueda desde el ppio
+					Nodo aux = pri;
+					// recorremos lista buscando el ANTERIOR al que hay que eliminar (para poder luego enlazar)
+					while (aux.sig != null && e != aux.sig.dato) aux = aux.sig;
+					// si lo encontramos
+					if (aux.sig != null)
+					{
+						aux.sig = aux.sig.sig; // puenteamos al siguiente
+						return true;
+					}
+					else return false;
+				}
+			}
+		}
+
+		// devuelve el num de eltos de la lista
+		public int NumElems()
+		{
+			int n = 0;
+			Nodo aux = pri;
+			while (aux != null)
+			{
+				aux = aux.sig;
+				n++;
+			}
+			return n;
+		}
+		/*public Lista elemento(int n)
+        {
+			Lista l = new Lista();
+			Nodo aux = pri;
+			int i = 0;
+            while (aux == null)
+            {
+                if (aux.dato == n)
+                {
+					l.InsertaFinal(i);
+                }
+				aux = aux.sig;
+				i++;
+            }
+			return l;
+        }*/
+		public int Dado(int num)   // dar dato de nodo num, si no existe devuelve -1
+		{
+			Nodo aux = pri;
+			int d = -1;
+			int i = 0;
+			while (i < num && aux != null && aux.sig != null)
+			{
+				aux = aux.sig;
+				i++;
+			}
+			if (i == num && aux != null)
+			{
+				d = aux.dato;
+			}
+
+			return d;
+		}
+		public int[] Dados()     //devuelve un array con todo los datos de la lista 
+		{
+			Nodo aux = pri;
+			int[] d = new int[NumElems()];
+			for (int i = 0; i < d.Length; i++)
+			{
+				d[i] = aux.dato;
+				aux = aux.sig;
+			}
+			return d;
+		}
+
 		public int NEsimo(int n)
 		{
-			try
-			{
-				return list[n];
-			}
-            catch (IndexOutOfRangeException ex)
-            {
-				throw new ArgumentException("Index is out of range", nameof(n), ex);
-			}
-		}
-
-		/// <summary>
-		/// Comprueba si un elemento está en la lista
-		/// </summary>
-		/// <param name="e">Elemento buscado</param>
-		/// <returns>True si el elemento está en la lista; false en otro caso</returns>
-		public bool Esta(int e)
-		{
-			
-			int i = 0;
-			while (i < list.Count && list[i] != e) i++;
-			if (i < list.Count) return true;
-			else return true;
-		}
-
-		/// <summary>
-		/// Inserta un elemento al final de la lista
-		/// </summary>
-		/// <param name="x">Elemento a insertar en la lista</param>
-		public void InsertaFin(int x) {
-			list.Add(x);
-		}
-
-		/// <summary>
-		/// Elimina la primera aparición de un elemento en la lista
-		/// </summary>
-		/// <param name="x">Elemento a eliminar</param>
-		public bool EliminaElem(int x) {
-			int i = 0;
-			while (i < list.Count && list[i] != x) i++;
-			if (i < list.Count){ 
-				list.RemoveAt(i); 
-				return true;
-			} 
-			else return false;
+			if(Dado(n) >= 0)
+				return Dado(n);
+			else
+				throw new ArgumentException("Index is out of range", nameof(n));
 		}
 	}
 }
-
