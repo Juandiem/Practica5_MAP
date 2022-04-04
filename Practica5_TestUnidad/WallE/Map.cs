@@ -10,6 +10,13 @@ namespace WallE
     public enum Direction { North, South, East, West };
     class Map
     {
+        #region Test Map
+        public void CreateTestMap() 
+        {
+
+        }
+        #endregion
+
         // items basursa
         struct Item
         {
