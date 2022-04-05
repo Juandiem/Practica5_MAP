@@ -11,9 +11,25 @@ namespace WallE
     class Map
     {
         #region Test Map
-        public void CreateTestMap() 
+        public void CreateTestMap()
         {
+            CreatePlace("place 0 ZonaA noSpaceShip".Split());
+            CreatePlace("place 1 ZonaB noSpaceShip".Split());
+            CreatePlace("place 2 ZonaC noSpaceShip".Split());
+            CreatePlace("place 3 ZonaD noSpaceShip".Split());
+            CreatePlace("place 4 ZonaE spaceShip".Split());
+            CreatePlace("place 5 ZonaF noSpaceShip".Split());
 
+            CreateStreet("street 0 north 3".Split());
+            CreateStreet("street 0 south 1".Split());
+            CreateStreet("street 0 west 2".Split());
+            CreateStreet("street 3 east 5".Split());
+            CreateStreet("street 2 north 5".Split());
+            CreateStreet("street 1 east 4".Split());
+
+            CreateItem("garbage place 0 News".Split());
+            CreateItem("garbage place 0 Scrap".Split());
+            CreateItem("garbage place 3 Bottle".Split());
         }
         #endregion
 
