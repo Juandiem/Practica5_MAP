@@ -30,7 +30,7 @@ namespace Test
         public void MoveWallE()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6,3);
+            WallE.Map map = new WallE.Map(7,3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -46,7 +46,7 @@ namespace Test
         public void PickItemWallE()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -64,7 +64,7 @@ namespace Test
         public void DropItemWallE()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -83,7 +83,7 @@ namespace Test
         public void BagWallEVacia()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -99,7 +99,7 @@ namespace Test
         public void BagWallENoVacia()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -115,7 +115,7 @@ namespace Test
         public void AtSpaceShipWallE()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();
@@ -131,7 +131,7 @@ namespace Test
         public void NotAtSpaceShipWallE()
         {
             //Arrange
-            WallE.Map map = new WallE.Map(6, 3);
+            WallE.Map map = new WallE.Map(7, 3);
             WallE.WallE wallE = new WallE.WallE();
             //Act
             map.CreateTestMap();

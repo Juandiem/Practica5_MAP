@@ -14,11 +14,19 @@ namespace WallE
         public void CreateTestMap()
         {
             CreatePlace("place 0 ZonaA noSpaceShip".Split());
+            places[0].description = "Esta es la Zona A";
             CreatePlace("place 1 ZonaB noSpaceShip".Split());
+            places[1].description = "Esta es la Zona B";
             CreatePlace("place 2 ZonaC noSpaceShip".Split());
+            places[2].description = "Esta es la Zona C";
             CreatePlace("place 3 ZonaD noSpaceShip".Split());
+            places[3].description = "Esta es la Zona D";
             CreatePlace("place 4 ZonaE spaceShip".Split());
+            places[4].description = "Esta es la Zona E";
             CreatePlace("place 5 ZonaF noSpaceShip".Split());
+            places[5].description = "Esta es la Zona F";
+            CreatePlace("place 6 ZonaG noSpaceShip".Split());
+            places[6].description = "";
 
             CreateStreet("street 0 north 3".Split());
             CreateStreet("street 0 south 1".Split());
@@ -27,11 +35,24 @@ namespace WallE
             CreateStreet("street 2 north 5".Split());
             CreateStreet("street 1 east 4".Split());
 
-            CreateItem("garbage place 0 News".Split());
-            CreateItem("garbage place 0 Scrap".Split());
-            CreateItem("garbage place 3 Bottle".Split());
+            CreateItem("garbage place 0 News Periódico".Split());
+            CreateItem("garbage place 0 Scrap Chatarra".Split());
+            CreateItem("garbage place 3 Bottle Botella".Split());
         }
 
+        public void TestCreatePlace(string[] p)
+        {
+            CreatePlace(p);
+        }
+
+        public void TestCreateItem(string[] p)
+        {
+            CreateItem(p);
+        }
+        public void TestCreateStreet(string[] p)
+        {
+            CreateStreet(p);
+        }
 
         public string getItemNameInPlace(int pl, int i)
         {
