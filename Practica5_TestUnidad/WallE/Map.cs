@@ -8,7 +8,7 @@ namespace WallE
 {
     
     public enum Direction { North, South, East, West };
-    class Map
+    public class Map
     {
         #region Test Map
         public void CreateTestMap()
@@ -30,6 +30,22 @@ namespace WallE
             CreateItem("garbage place 0 News".Split());
             CreateItem("garbage place 0 Scrap".Split());
             CreateItem("garbage place 3 Bottle".Split());
+        }
+
+
+        public string getItemNameInPlace(int pl, int i)
+        {
+            string it = "";
+            int[] d = places[pl].itemsInPlace.Dados();
+            if (i < d.Length)
+                it = items[d[i]].name;
+
+            return it;
+        }
+
+        public string ItemName(int n)
+        {
+            return items[n].name;
         }
         #endregion
 

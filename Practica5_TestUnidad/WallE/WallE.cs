@@ -5,7 +5,7 @@ using Listas;
 
 namespace WallE
 {
-    class WallE
+    public class WallE
     {
         int pos; // posicion de Wall-e en el mapa
         Lista bag; // lista de ítems recogidos por wall-e
@@ -57,6 +57,24 @@ namespace WallE
         {
             return bag.Dado(n);
         }
+
+        #region Test Map
+        public int getNumItems()
+        {
+            return bag.NumElems();
+        }
+
+        public string getItemNameInBag(Map m,int i)
+        {
+            string item = "";
+            int[] d = bag.Dados();
+            if (i < d.Length)
+                item = m.ItemName(d[i]);
+
+            return item;
+        }
+        #endregion
+
 
     }
 }
